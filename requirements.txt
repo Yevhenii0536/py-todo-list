@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+python-dotenv
+pydantic_settings
+aiosqlite==0.21.0
+virtualenv==20.30.0
