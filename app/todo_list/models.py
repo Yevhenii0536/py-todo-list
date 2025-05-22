@@ -5,11 +5,11 @@ from datetime import datetime
 
 from app.db.engine import Base
 
+
 class TodoPriority(StrEnum):
     LOW = auto()
     MEDIUM = auto()
     HIGH = auto()
-
 
 
 class TodoCategory(Base):
@@ -17,7 +17,8 @@ class TodoCategory(Base):
     
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     title: Mapped[str] = mapped_column(String(255), nullable=False, unique=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), insert_default=func.now())
     updated_at: Mapped[datetime | None] = mapped_column(DateTime, default=None, onupdate=func.now())
 
     todo: Mapped[list["Todo"]] = relationship("Todo", back_populates="category", cascade="all, delete-orphan")
@@ -30,7 +31,7 @@ class Todo(Base):
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
 
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), insert_default=func.now())
     updated_at: Mapped[datetime | None] = mapped_column(DateTime, default=None, onupdate=func.now())
 
     priority: Mapped[TodoPriority] = mapped_column(

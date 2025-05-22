@@ -20,6 +20,10 @@ class TodoCreate(TodoBase):
     category_id: int
 
 
+class TodoUpdate(TodoCreate):
+    id: int
+
+
 class TodoRead(TodoBase):
     id: int
     category: TodoCategoryShort
