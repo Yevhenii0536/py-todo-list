@@ -15,6 +15,10 @@ class TodoCategoryCreate(TodoCategoryBase):
     pass
 
 
+class TodoCategoryUpdate(TodoCategoryCreate):
+    id: int
+
+
 class TodoCategoryRead(TodoCategoryBase):
     id: int
     created_at: Optional[datetime] = None
